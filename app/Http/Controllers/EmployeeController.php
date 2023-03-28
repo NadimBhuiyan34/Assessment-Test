@@ -68,8 +68,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
-        Employee::findOrFail($id)->delete();
-        return redirect()->back()->withMessage('Successfully Deleted');
+        // Employee::findOrFail($id)->delete();
+        // return redirect()->back()->withMessage('Successfully Deleted');
     }
 
     /**
@@ -80,8 +80,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee_edit=Employee::findOrFail($id)->get();
-        return view('AssessmentForm',compact('employee_edit'));
+       
     }
 
     /**
@@ -94,6 +93,21 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        @dd($request->all());
+        if ($file = $request->file('image')) {
+            $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(storage_path('app/public/employee_image'), $filename);
+        }
+        $user_update = Employee::findOrFail($id);
+        $user_update->update([
+            'Name' => $request->name??$user_update->name,
+            'email' => $request->email??$user_update->email,
+            'gender' => $request->status??$user_update->status,
+            'skill' => json_encode($request->skill)??$user_update->skill,
+            'image' => $filename??$user_update->image
+        ]);
+        return redirect()->back()->withMessage('Successfully Update');
     }
 
     /**
