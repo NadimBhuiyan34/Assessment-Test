@@ -12,9 +12,23 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function data(Request $request, $id)
     {
+        if ($file = $request->file('image')) {
+            $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(storage_path('app/public/employee_image'), $filename);
+        }
         
+        $user_update = Employee::findOrFail($id);
+        $user_update->update([
+            'Name' => $request->name??$user_update->name,
+            'email' => $request->email??$user_update->email,
+            'gender' => $request->status??$user_update->status,
+            'skill' => json_encode($request->skill)??$user_update->skill,
+            'image' => $filename??$user_update->image
+        ]);
+        return redirect()->back()->withMessage('Successfully Update');
     }
 
     /**
@@ -93,12 +107,13 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        @dd($request->all());
+       
         if ($file = $request->file('image')) {
             $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
 
             $file->move(storage_path('app/public/employee_image'), $filename);
         }
+
         $user_update = Employee::findOrFail($id);
         $user_update->update([
             'Name' => $request->name??$user_update->name,

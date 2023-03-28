@@ -149,7 +149,7 @@
                         <td class="">
                           {{-- <a href="" class="btn btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal{{$employee->id}}">Edit</a> --}}
                           <button class="btn btn-success btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal{{$employee->id}}">Edit</button>
-                          <form action="{{ route('employees.show',['employee' => $employee->id]) }}" method="post">
+                          <form action="{{ route('employees.destroy',['employee' => $employee->id]) }}" method="post">
               
                           
                             @csrf
@@ -164,6 +164,7 @@
  
 
 <!-- Modal -->
+
 <div class="modal fade modal-lg" id="exampleModal{{ $employee->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -172,8 +173,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="background-color: rgb(231, 242, 242)">
+        <form action="" enctype="multipart/form-data">
       
-        <form action="{{ route('employees.update',['employee'=>$employee->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('patch')
             <div class="row mb-3">

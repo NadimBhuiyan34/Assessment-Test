@@ -20,5 +20,5 @@ Route::get('/', function () {
    
 });
 Route::resource('employees', EmployeeController::class);
-// Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+Route::patch('/employees/{id}', [EmployeeController::class, 'data'])->name('employees.data');
 
