@@ -12,8 +12,11 @@
     <div class="container mt-3">
       <x-alertmessage type="success"/>
          <div class="card shadow mt-3 border-top border-bottom border-info border-3">
-            <div class="card-header bg-primary">
-               <h3 class="text-center text-white">Assessment Test for Software Engineer Intern</h3>
+         
+            <div class="card-header d-flex " style="background-color: #ced2d6">
+              <img src="{{ asset('image/logo.png') }}" alt="" style="height:45px;width:200px" class="col-sm-2">
+               <h4 class="text-dark mr-2 pt-2 text-center">Assessment Test for Intern</h4>
+
             </div>
             <div class="card-body" style="background-color: rgb(231, 242, 242)">
               @if (isset($user_update))
