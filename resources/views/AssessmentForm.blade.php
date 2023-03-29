@@ -47,13 +47,13 @@
                       <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                       <div class="col-sm-10">
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="gender" id="male" value="Male {{ old('gender') == 'Male' ? 'checked' : '' }}">
+                          <input class="form-check-input" type="radio" name="gender" id="male" value="Male"{{ old('gender') == 'Male' ? 'checked' : '' }}>
                           <label class="form-check-label" for="male">
                             Male
                           </label>
                         </div>
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="gender" id="female" value="Female {{ old('gender') == 'Female' ? 'checked' : '' }}">
+                          <input class="form-check-input" type="radio" name="gender" id="female" value="Female" {{ old('gender') == 'Female' ? 'checked' : '' }}>
                           <label class="form-check-label" for="female">
                             Female
                           </label>
@@ -66,21 +66,21 @@
                       <div class="col-sm-10 row ">
                         <div class="col-sm-2 ">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Laravel" name="skill[]" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" value="Laravel" name="skill[]" id="flexCheckDefault" @if(old('skill') && in_array('Laravel', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckDefault">
                                   Laravel
                                 </label>
                               </div>
                                
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Ajax" name="skill[]" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="Ajax" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('Ajax', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckChecked">
                                   Ajax
                                 </label>
                               </div>
 
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="MySQL" name="skill[]" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="MySQL" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('MySQL', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckChecked">
                                   MySQL
                                 </label>
@@ -88,19 +88,19 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Codeiniter" name="skill[]" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="Codeiniter" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('Codeiniter', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckChecked">
                                   Codeiniter
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="VUE JS" name="skill[]" id="flexCheckChecked">
+                                <input class="form-check-input" type="checkbox" value="VUE JS" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('VUE JS', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckChecked">
                                  VUE JS
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input  class="form-check-input" type="checkbox" value="API" name="skill[]" id="flexCheckChecked">
+                                <input  class="form-check-input" type="checkbox" value="API" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array(' API', old('skill'))) checked @endif>
                                 <label class="form-check-label" for="flexCheckChecked">
                                 API
                                 </label>
