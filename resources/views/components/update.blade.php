@@ -7,6 +7,7 @@
 <form method="post" action="{{ route('employees.update',['employee'=>$employee->id]) }}" enctype="multipart/form-data">
     @csrf
   @method('patch')
+  <input type="hidden" value="{{ $employee->image }}" name="oldimage">
       <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
