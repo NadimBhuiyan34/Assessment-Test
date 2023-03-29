@@ -117,5 +117,15 @@
      })
   });
  </script>
+ <script>
+  let imagename=document.getElementById("imageInput");
+  
+   imagename.addEventListener("input",function(event){
+      var tmppath = URL.createObjectURL(event.target.files[0]);
+   
+      document.getElementById("image").src=tmppath;
+      
+   });
+</script>
   </body>
 </html>

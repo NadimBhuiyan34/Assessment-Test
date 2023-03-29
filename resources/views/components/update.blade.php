@@ -28,8 +28,8 @@
       <div class="row mb-3">
         <label for="image" class="col-sm-2 col-form-label">Image</label> 
         <div class="col-sm-10">
-            <img src="{{asset('/storage/employee_image/'.$data[0]->image)}}" alt="" style="width:100px;height:100px;margin:auto">
-          <input type="file" class="form-control" id="image" name="image">
+            <img src="{{asset('/storage/employee_image/'.$data[0]->image)}}" alt="" style="width:100px;height:100px;margin:auto" id="image">
+          <input type="file" class="form-control" id="imageInput" name="image">
           <x-error name="image"/>
         </div>
         

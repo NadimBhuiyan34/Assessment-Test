@@ -103,13 +103,6 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email'=> 'required|email|string|max:255',
-            // 'email' => [
-               
-            //     'string',
-            //     'email',
-            //     'max:255',
-            //     (new Unique('employees', 'email'))->ignore($user_update1->email), 
-            // ],
             'gender' => 'required',
             'skill' => 'required',
             'image' => 'max:1048', // maximum 2MB
