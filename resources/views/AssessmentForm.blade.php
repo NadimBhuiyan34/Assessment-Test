@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}"><meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Interview-Form</title>
    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   </head>
@@ -51,7 +52,8 @@
                         @endphp
                     
                         @foreach ($skills as $skill)
-                          {{ $skill }}, 
+                          
+                          <span class="badge rounded-pill text-bg-info">{{ $skill }}</span>
                         @endforeach
                       
                         </td> 
@@ -59,7 +61,7 @@
                         <td align="center">
                             <img src="{{asset('/storage/employee_image/'.$employee->image)}}" alt="" style="width:100px;height:100px;margin:auto"></td>
                         </td>
-                        
+
                         <td>
                           <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-success btn-sm" name="btn">Edit</a>
 
@@ -69,26 +71,9 @@
                   </tr>
 
 
-
-<!-- Button trigger modal -->
- 
-
-<!-- Modal -->
- 
-
-
-
-
                   @endforeach
  
 
-
-
-
- 
-             
-                    
-                    
                   
                 </tbody>
               </table>
@@ -98,5 +83,39 @@
  
  
    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+ <script>
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+ </script>
+ <script>
+  $(document).ready(function(){
+  //  alert();
+     $(document).on('click','.add_employee',function(e){
+      // e.preventDefault();
+      let name=$('#name').val();
+      let email=$('#email').val();
+      let gender = $('input[name="gender"]:checked').val();
+       console.log(name+email+gender);
+       $.ajax({
+  url: "{{ route('employees.store') }}",
+  method: "post",
+  data: { name: name, email: email, gender: gender },
+  success: function(response) {
+    
+  },
+  error: function(xhr, status, error) {
+ 
+  }
+});
+
+     })
+  });
+ </script>
   </body>
 </html>

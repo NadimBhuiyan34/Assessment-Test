@@ -18,7 +18,13 @@
           <p class="text-{{ session('type') }}">{{ session('message') }}</p>
           <button type="button" class="btn btn-success" data-bs-dismiss="toast">OK</button>
         </div>
-      
+
+         
+        
+         
+
+
+
         
   </div>
       

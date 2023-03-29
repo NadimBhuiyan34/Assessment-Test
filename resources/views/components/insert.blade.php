@@ -1,6 +1,6 @@
 <form method="post" action="{{ route('employees.store') }}" enctype="multipart/form-data">
     @csrf
-  
+    @method('POST')
       <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
@@ -29,13 +29,13 @@
         <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
         <div class="col-sm-10">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="male" value="Male"{{ old('gender') == 'Male' ? 'checked' : '' }}>
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="Male"{{ old('gender') == 'Male' ? 'checked' : '' }}>
             <label class="form-check-label" for="male">
               Male
             </label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="female" value="Female" {{ old('gender') == 'Female' ? 'checked' : '' }}>
+            <input class="form-check-input" type="radio" name="gender" id="" value="Female" {{ old('gender') == 'Female' ? 'checked' : '' }}>
             <label class="form-check-label" for="female">
               Female
             </label>
@@ -69,7 +69,7 @@
                   </label>
                 </div>
           </div>
-          
+
           <div class="col-sm-3">
               <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="Codeiniter" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('Codeiniter', old('skill'))) checked @endif>
@@ -98,6 +98,6 @@
       </div>
       <div class="d-grid gap-2 col-2 mx-auto ">
           
-          <button class="btn text-white" type="submit" style="background-color: #003d0c">Submit</button>
+          <button class="btn text-white add_employee" type="submit" style="background-color: #003d0c">Submit</button>
         </div>
     </form>
