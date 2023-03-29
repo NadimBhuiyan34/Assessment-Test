@@ -1,12 +1,9 @@
 
 @props(['data'])
- {{-- @dd($data) --}}
+
  @php
       $skills= json_decode($data[0]->skill);
  @endphp
-
- {{-- @foreach ($data as $employee) --}}
-     
 
 <form method="post" action="{{ route('employees.update',['employee'=>$data[0]->id]) }}" enctype="multipart/form-data">
     @csrf
@@ -27,9 +24,9 @@
           <x-error name="email"/>
         </div>
       </div>
+
       <div class="row mb-3">
-        <label for="image" class="col-sm-2 col-form-label">Image</label>
-       
+        <label for="image" class="col-sm-2 col-form-label">Image</label> 
         <div class="col-sm-10">
             <img src="{{asset('/storage/employee_image/'.$data[0]->image)}}" alt="" style="width:100px;height:100px;margin:auto">
           <input type="file" class="form-control" id="image" name="image">
@@ -38,6 +35,7 @@
         
       </div>
       
+
       <fieldset class="row mb-3">
         <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
         <div class="col-sm-10">
@@ -60,13 +58,8 @@
           <x-error name="gender"/>
         </div>
       </fieldset>
-                        {{-- @php
-                         $skills= json_decode($employee[0]->skill);
-                        @endphp --}}
-                        
-                           
-                        
-                    
+                         
+        
       <div class="row mb-3">
           <legend class="col-form-label col-sm-2 pt-0">Skill</legend>
         <div class="col-sm-10 row ">
@@ -115,7 +108,7 @@
                   API
                   </label>
                 </div>
-                {{-- @endforeach --}}
+                
           </div>
           <x-error name="skill"/>
          
@@ -128,4 +121,4 @@
          <a href="{{ route('home') }}" class="btn btn-danger btn-sm btn-inline">Clear</a>
       </div>
     </form>
-    {{-- @endforeach --}}
+     

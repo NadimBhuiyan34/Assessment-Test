@@ -16,13 +16,13 @@
           <x-error name="email"/>
         </div>
       </div>
+
       <div class="row mb-3">
         <label for="image" class="col-sm-2 col-form-label">Image</label>
         <div class="col-sm-10">
           <input type="file" class="form-control" id="image" name="image">
           <x-error name="image"/>
         </div>
-        
       </div>
       
       <fieldset class="row mb-3">
@@ -43,6 +43,7 @@
           <x-error name="gender"/>
         </div>
       </fieldset>
+
       <div class="row mb-3">
           <legend class="col-form-label col-sm-2 pt-0">Skill</legend>
         <div class="col-sm-10 row ">
@@ -68,6 +69,7 @@
                   </label>
                 </div>
           </div>
+          
           <div class="col-sm-3">
               <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="Codeiniter" name="skill[]" id="flexCheckChecked" @if(old('skill') && in_array('Codeiniter', old('skill'))) checked @endif>

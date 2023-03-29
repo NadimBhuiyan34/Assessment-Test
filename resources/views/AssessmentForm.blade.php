@@ -16,12 +16,12 @@
             </div>
             <div class="card-body" style="background-color: rgb(231, 242, 242)">
               @if (isset($user_update))
+              {{-- update form components --}}
               <x-update :data="$user_update"/>
               @else
+              {{-- insert form components --}}
               <x-insert/>
-              @endif  
-               
-                
+              @endif    
             </div>
          </div>
 
@@ -44,8 +44,7 @@
                        <td>{{ $employee->email }}</td> 
                        <td>{{ $employee->gender }}</td> 
                        <td>
-                     
-                          
+                    
                         
                         @php
                          $skills= json_decode($employee->skill)
@@ -57,21 +56,14 @@
                       
                         </td> 
                        
-                          <td align="center"><img src="{{asset('/storage/employee_image/'.$employee->image)}}" alt="" style="width:100px;height:100px;margin:auto"></td>
+                        <td align="center">
+                            <img src="{{asset('/storage/employee_image/'.$employee->image)}}" alt="" style="width:100px;height:100px;margin:auto"></td>
                         </td>
-                        <td class="">
-                          
-                        <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-success btn-sm" name="btn">Edit</a>
+                        
+                        <td>
+                          <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-success btn-sm" name="btn">Edit</a>
 
-                          {{-- <form action="{{ route('employees.destroy',['employee' => $employee->id]) }}" method="post">
-  
-                          
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                           </form> --}}
-
-                      <a href="{{ route('employees.show',['employee'=>$employee->id]) }}" class="btn btn-danger btn-sm ">Delete</a>
+                          <a href="{{ route('employees.show',['employee'=>$employee->id]) }}" class="btn btn-danger btn-sm ">Delete</a>
                           
                         </td>
                   </tr>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\Unique;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
@@ -12,23 +13,9 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function data(Request $request, $id)
+    public function index()
     {
-        if ($file = $request->file('image')) {
-            $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
-
-            $file->move(storage_path('app/public/employee_image'), $filename);
-        }
         
-        $user_update = Employee::findOrFail($id);
-        $user_update->update([
-            'Name' => $request->name??$user_update->name,
-            'email' => $request->email??$user_update->email,
-            'gender' => $request->status??$user_update->status,
-            'skill' => json_encode($request->skill)??$user_update->skill,
-            'image' => $filename??$user_update->image
-        ]);
-        return redirect()->back()->withMessage('Successfully Update');
     }
 
     /**
@@ -57,7 +44,7 @@ class EmployeeController extends Controller
             'skill' => 'required',
             'image' => 'required|image|max:1048', // maximum 2MB
         ]);
-        // @dd($request->all());
+     
         if ($file = $request->file('image')) {
             $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
 
@@ -95,7 +82,7 @@ class EmployeeController extends Controller
     public function edit($id)
     { 
         $employees=Employee::latest()->get();
-        // $user_update = Employee::findOrFail($id)->get();
+        
         $user_update = Employee::where('id', $id)->get();
 
        return view('AssessmentForm',compact('user_update','employees'));
@@ -111,9 +98,18 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user_update1 = Employee::where('id', $id)->get();
+        $user_update = Employee::where('id', $id);
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email'=> 'required|email|string|max:255',
+            // 'email' => [
+               
+            //     'string',
+            //     'email',
+            //     'max:255',
+            //     (new Unique('employees', 'email'))->ignore($user_update1->email), 
+            // ],
             'gender' => 'required',
             'skill' => 'required',
             'image' => 'max:1048', // maximum 2MB
@@ -125,11 +121,10 @@ class EmployeeController extends Controller
         }
 
         
-        $user_update1 = Employee::where('id', $id)->get();
-        $user_update = Employee::where('id', $id);
+      
         $user_update->update([
             'Name' => $request->name??$user_update1->name,
-            'email' => $request->email??$user_update1->email,
+            'email' => $request->email,
             'gender' => $request->gender??$user_update1->gender,
             'skill' => json_encode($request->skill)??$user_update1->skill,
             'image' => $filename??$request->oldimage
