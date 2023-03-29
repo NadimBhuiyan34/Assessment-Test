@@ -18,7 +18,7 @@ Route::get('/', function () {
     $employees=Employee::latest()->get();
         return view('AssessmentForm',compact('employees'));
    
-});
+})->name('home');
 Route::resource('employees', EmployeeController::class);
 Route::patch('/employees/{id}', [EmployeeController::class, 'data'])->name('employees.data');
 

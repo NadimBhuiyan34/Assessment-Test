@@ -122,9 +122,10 @@
         </div>
        
       </div>
-      <div class="d-grid gap-2 col-2 mx-auto ">
+      <div class="text-center">
           
-          <button class="btn text-white" type="submit" style="background-color: #003d0c">Save Change</button>
-        </div>
+          <button class="btn text-white btn-inline btn-sm" type="submit" style="background-color: #003d0c">Save Change</button>
+         <a href="{{ route('home') }}" class="btn btn-danger btn-sm btn-inline">Clear</a>
+      </div>
     </form>
     {{-- @endforeach --}}
