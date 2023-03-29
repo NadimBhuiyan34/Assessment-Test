@@ -52,7 +52,7 @@ class EmployeeController extends Controller
         
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
+            'email' => 'required|string|email|unique:employees,email|max:255',
             'gender' => 'required',
             'skill' => 'required',
             'image' => 'required|image|max:1048', // maximum 2MB
@@ -82,8 +82,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
-        // Employee::findOrFail($id)->delete();
-        // return redirect()->back()->withMessage('Successfully Deleted');
+        Employee::findOrFail($id)->delete();
+        return redirect()->back()->withMessage('Successfully Deleted');
     }
 
     /**
@@ -94,7 +94,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-       
+        $employee_edit=Employee::findOrFail($id)->get();
+        return view('AssessmentForm',compact('employee_edit'));
+      
     }
 
     /**
