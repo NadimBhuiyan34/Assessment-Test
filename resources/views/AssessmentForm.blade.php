@@ -28,7 +28,7 @@
 
 
          {{-- Table Start --}}
-         <div class="mt-5 card">
+         <div class="mt-5 card mb-5">
             <table class="table">
                 <thead class="table-dark">
                   <th>Name</th>
