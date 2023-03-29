@@ -29,7 +29,7 @@
 
          {{-- Table Start --}}
          <div class="mt-5 card mb-5">
-            <table class="table">
+            <table class=" table table-bordered">
                 <thead class="table-dark">
                   <th>Name</th>
                   <th>Email</th>
@@ -63,9 +63,9 @@
                         </td>
 
                         <td>
-                          <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-success btn-sm" name="btn">Edit</a>
+                          <a href="{{ route('employees.edit',['employee'=>$employee->id]) }}" class="btn btn-success btn-sm mt-4" name="btn">Edit</a>
 
-                          <a href="{{ route('employees.show',['employee'=>$employee->id]) }}" class="btn btn-danger btn-sm ">Delete</a>
+                          <a href="{{ route('employees.show',['employee'=>$employee->id]) }}" class="btn btn-danger btn-sm mt-4">Delete</a>
                           
                         </td>
                   </tr>
