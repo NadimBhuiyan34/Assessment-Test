@@ -93,10 +93,12 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $employee_edit=Employee::findOrFail($id)->get();
-        return view('AssessmentForm',compact('employee_edit'));
-      
+    { 
+        $employees=Employee::latest()->get();
+        // $user_update = Employee::findOrFail($id)->get();
+        $user_update = Employee::where('id', $id)->get();
+
+       return view('AssessmentForm',compact('user_update','employees'));
     }
 
     /**
