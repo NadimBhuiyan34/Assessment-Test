@@ -118,11 +118,12 @@ class EmployeeController extends Controller
             $file->move(storage_path('app/public/employee_image'), $filename);
         }
 
-        $user_update = Employee::findOrFail($id);
+        
+        $user_update = Employee::where('id', $id);
         $user_update->update([
             'Name' => $request->name??$user_update->name,
             'email' => $request->email??$user_update->email,
-            'gender' => $request->status??$user_update->status,
+            'gender' => $request->gender??$user_update->gender,
             'skill' => json_encode($request->skill)??$user_update->skill,
             'image' => $filename??$user_update->image
         ]);
