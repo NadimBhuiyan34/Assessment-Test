@@ -134,7 +134,7 @@ class EmployeeController extends Controller
             'skill' => json_encode($request->skill)??$user_update1->skill,
             'image' => $filename??$request->oldimage
         ]);
-        return redirect()->back()->withMessage('Successfully Update');
+        return redirect('/')->withMessage('Successfully Update');
     }
 
     /**
