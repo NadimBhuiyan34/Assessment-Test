@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rules\Unique;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 class EmployeeController extends Controller
@@ -98,11 +99,18 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user_update1 = Employee::where('id', $id)->get();
+        $user_update1 = Employee::where('id', $id)->first();
         $user_update = Employee::where('id', $id);
+        // @dd($user_update1->email);
         $request->validate([
             'name' => 'required|string|max:255',
-            'email'=> 'required|email|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('employees')->ignore($user_update1->id),
+            ],
             'gender' => 'required',
             'skill' => 'required',
             'image' => 'max:1048', // maximum 2MB

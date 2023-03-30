@@ -12,7 +12,7 @@
       <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}{{ $data[0]->name }}">
+          <input type="text" class="form-control" id="name" name="name" value="{{ $data[0]->name }}">
           <x-error name="name"/>
         </div>
 
@@ -20,7 +20,7 @@
       <div class="row mb-3">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}{{ $data[0]->email }} ">
+          <input type="email" class="form-control" id="email" name="email" value="{{ $data[0]->email }} ">
           <x-error name="email"/>
         </div>
       </div>
