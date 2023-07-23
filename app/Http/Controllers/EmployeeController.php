@@ -99,8 +99,8 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user_update1 = Employee::where('id', $id)->first();
-        $user_update = Employee::where('id', $id);
+       
+        $user_update = Employee::where('id', $id)->first();
         // @dd($user_update1->email);
         $request->validate([
             'name' => 'required|string|max:255',
@@ -109,11 +109,11 @@ class EmployeeController extends Controller
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('employees')->ignore($user_update1->id),
+                Rule::unique('employees')->ignore($user_update->id),
             ],
             'gender' => 'required',
             'skill' => 'required',
-            'image' => 'max:1048', // maximum 2MB
+            'image' => 'max:1048', // maximum 1MB
         ]);
         if ($file = $request->file('image')) {
             $filename = date('dmY') . time() . '.' . $file->getClientOriginalExtension();
@@ -124,11 +124,11 @@ class EmployeeController extends Controller
         
       
         $user_update->update([
-            'Name' => $request->name??$user_update1->name,
+            'Name' => $request->name??$user_update->name,
             'email' => $request->email,
-            'gender' => $request->gender??$user_update1->gender,
-            'skill' => json_encode($request->skill)??$user_update1->skill,
-            'image' => $filename??$request->oldimage
+            'gender' => $request->gender??$user_update->gender,
+            'skill' => json_encode($request->skill)??$user_update->skill,
+            'image' => $filename??$user_update->image,
         ]);
         return redirect('/')->withMessage('Successfully Update');
     }

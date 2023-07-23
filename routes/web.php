@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Models\Employee;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +22,4 @@ Route::get('/', function () {
 })->name('home');
 Route::resource('employees', EmployeeController::class);
 Route::patch('/employees/{id}', [EmployeeController::class, 'data'])->name('employees.data');
-
+Route::resource('books', BookController::class);
